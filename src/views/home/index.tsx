@@ -1,17 +1,15 @@
 import "./index.less";
 import Particles from "@/components/ReactBits/Particles";
-import Nav from "@/components/Nav";
 import HomeCard from "./components/card";
 import SplitText from "@/components/ReactBits/SplitText";
+import HeaderLayout from "@/layouts/Header";
 
 const Home = () => {
   return (
     <div className="home-wrap">
       <Particles />
       <div className="home-container">
-        <div className="nav-content">
-          <Nav />
-        </div>
+        <HeaderLayout />
         <div className="home-content">
           <div className="home-content-title">
             <SplitText

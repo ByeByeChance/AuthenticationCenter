@@ -1,30 +1,37 @@
-import { Outlet, Link } from "react-router-dom";
-import { Layout, Menu } from "antd";
+import { Outlet, useLocation } from "react-router-dom";
+import Particles from "@/components/ReactBits/Particles";
+import HeaderLayout from "@/layouts/Header";
 import "./index.less";
 
-const { Header, Content, Footer } = Layout;
-
 function LayoutComponent() {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  // 检查是否为登录页、注册页或404页
+  const isSpecialPage = ["/login", "/register", "/404"].includes(currentPath);
+
   return (
-    <Layout className="app-layout">
-      <Header className="app-header">
-        <div className="logo" />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={["1"]}
-          items={[
-            { key: "1", label: <Link to="/">首页</Link> },
-            { key: "2", label: <Link to="/login">登录</Link> },
-            { key: "3", label: <Link to="/register">注册</Link> }
-          ]}
-        />
-      </Header>
-      <Content className="app-content">
-        <Outlet />
-      </Content>
-      <Footer className="app-footer">Unified Authentication Center ©2026 Created by React + TypeScript</Footer>
-    </Layout>
+    <div className="layout-wrapper">
+      {/* 背景粒子效果 - 只在非特殊页面显示 */}
+      {!isSpecialPage && <Particles />}
+
+      {/* 应用布局容器 */}
+      <div className="app-layout">
+        {/* 头部 */}
+        <HeaderLayout />
+
+        {/* 主体内容 */}
+        <div className="app-body">
+          {/* 主内容区 */}
+          <main className="app-content">
+            <Outlet />
+          </main>
+        </div>
+
+        {/* 底部 */}
+        <div className="app-footer">Unified Authentication Center ©2026 Created by LD4d</div>
+      </div>
+    </div>
   );
 }
 

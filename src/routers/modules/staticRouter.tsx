@@ -5,18 +5,14 @@ import Login from "@/views/login";
 import Register from "@/views/register";
 import NotFound from "@/views/404";
 import Home from "@/views/home";
+import UserManagement from "@/views/userManagement";
+import Setting from "@/views/setting";
+import LayoutComponent from "@/components/Layout";
 
 /**
  * staticRouter
  */
 export const staticRouter: RouteObjectType[] = [
-  {
-    path: "/",
-    element: <Navigate to={HOME_URL} />,
-    meta: {
-      title: "首页"
-    }
-  },
   {
     path: LOGIN_URL,
     element: <Login />,
@@ -39,12 +35,41 @@ export const staticRouter: RouteObjectType[] = [
     }
   },
   {
-    path: HOME_URL,
-    element: <Home />,
-    meta: {
-      title: "首页",
-      requiresAuth: true
-    }
+    path: "/",
+    element: <LayoutComponent />,
+    children: [
+      {
+        path: "",
+        element: <Navigate to={HOME_URL} />,
+        meta: {
+          title: "首页"
+        }
+      },
+      {
+        path: HOME_URL,
+        element: <Home />,
+        meta: {
+          title: "首页",
+          requiresAuth: true
+        }
+      },
+      {
+        path: "/userManagement",
+        element: <UserManagement />,
+        meta: {
+          title: "用户管理",
+          requiresAuth: true
+        }
+      },
+      {
+        path: "/setting",
+        element: <Setting />,
+        meta: {
+          title: "设置",
+          requiresAuth: true
+        }
+      }
+    ]
   },
   // 404 page
   {

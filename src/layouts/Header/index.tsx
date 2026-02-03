@@ -1,15 +1,13 @@
-import { Layout } from "antd";
 import Nav from "@/components/Nav";
-
-const { Header } = Layout;
+import "./index.less";
 
 const HeaderLayout = () => {
   return (
-    <Header>
+    <div className="app-header">
       <div className="nav-content">
         <Nav />
       </div>
-    </Header>
+    </div>
   );
 };
 

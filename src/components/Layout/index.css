@@ -3,19 +3,17 @@
   min-height: 100vh;
   width: 100%;
   overflow-x: hidden;
-  
   /* 确保粒子效果在背景 */
-  .particles-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    background-color: #000;
-  }
 }
-
+.layout-wrapper .particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-color: #000;
+}
 .app-layout {
   position: relative;
   min-height: 100vh;
@@ -24,7 +22,6 @@
   display: flex;
   flex-direction: column;
 }
-
 /* 主体内容样式 */
 .app-body {
   flex: 1;
@@ -33,7 +30,6 @@
   position: relative;
   z-index: 1;
 }
-
 /* 主内容区样式 */
 .app-content {
   flex: 1;
@@ -41,13 +37,11 @@
   overflow: hidden;
   position: relative;
 }
-
 /* 为登录页面特殊处理，移除padding和背景色 */
 .app-content:has(.login-container) {
   padding: 0;
   background: transparent;
 }
-
 /* 底部样式 */
 .app-footer {
   width: 100%;
@@ -59,13 +53,11 @@
   opacity: 0.6;
   font-size: 14px;
 }
-
 /* 响应式布局 */
 @media (max-width: 768px) {
   .app-body {
     flex-direction: column;
   }
-  
   .app-sider {
     width: 100%;
     border-right: none;

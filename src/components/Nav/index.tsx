@@ -1,5 +1,5 @@
 import CardNav from "@/components/ReactBits/CardNav";
-import logo from "@/assets/react.svg";
+import logo from "@/assets/icon_IDidentity_black.svg";
 
 const Nav = () => {
   const items = [

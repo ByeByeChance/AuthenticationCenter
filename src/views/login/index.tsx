@@ -1,9 +1,9 @@
 import Aurora from "@/components/ReactBits/Aurora";
 import SplitText from "@/components/ReactBits/SplitText";
-import { VerifiedOutlined } from "@ant-design/icons";
 import { APP_TITLE } from "@/config";
 import "./index.less";
 import LoginForm from "./components/loginForm";
+import IDIdentityWhite from "@/assets/icon_IDidentity_white.svg";
 
 function Login() {
   localStorage.clear();
@@ -14,7 +14,7 @@ function Login() {
       <Aurora />
       <div className="login-form-container">
         <div className="login-form-title-container">
-          <VerifiedOutlined style={{ fontSize: 40, marginRight: 8 }} />
+          <img className="login-form-title-icon" src={IDIdentityWhite} alt="ID Identity White" />
           <SplitText
             text={APP_TITLE}
             delay={50}

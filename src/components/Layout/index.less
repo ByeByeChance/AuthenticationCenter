@@ -1,0 +1,33 @@
+.app-layout {
+  min-height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  
+  .logo {
+    width: 120px;
+    height: 31px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px 24px 16px 0;
+    float: left;
+  }
+}
+
+.app-content {
+  padding: 0;
+  margin: 0;
+  min-height: 280px;
+  background: #fff;
+}
+
+/* 为登录页面特殊处理，移除padding和背景色 */
+.app-content:has(.login-container) {
+  padding: 0;
+  background: transparent;
+}
+
+.app-footer {
+  text-align: center;
+}

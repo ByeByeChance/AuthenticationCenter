@@ -1,9 +1,9 @@
+import { APP_TITLE } from "@/config";
+import LoginForm from "./components/loginForm";
 import Aurora from "@/components/ReactBits/Aurora";
 import SplitText from "@/components/ReactBits/SplitText";
-import { APP_TITLE } from "@/config";
-import "./index.less";
-import LoginForm from "./components/loginForm";
 import IDIdentityWhite from "@/assets/icon_IDidentity_white.svg";
+import "./index.less";
 
 function Login() {
   localStorage.clear();

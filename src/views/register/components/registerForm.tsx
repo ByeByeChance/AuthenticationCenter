@@ -102,6 +102,11 @@ const RegisterForm = () => {
           注册
         </Button>
       </Form.Item>
+      <p className="register-form-link-item">
+        <a href="/login" className="register-form-link">
+          已经有账号了？去登录
+        </a>
+      </p>
     </Form>
   );
 };

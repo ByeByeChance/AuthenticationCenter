@@ -107,6 +107,11 @@ const LoginForm = () => {
           登录
         </Button>
       </Form.Item>
+      <p className="login-form-link-item">
+        <a href="/register" className="login-form-link">
+          还没有账号？去注册
+        </a>
+      </p>
     </Form>
   );
 };

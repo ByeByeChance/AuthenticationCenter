@@ -1,8 +1,9 @@
 import Aurora from "@/components/ReactBits/Aurora";
 import SplitText from "@/components/ReactBits/SplitText";
-import "./index.less";
 import RegisterForm from "./components/registerForm";
+import { APP_TITLE } from "@/config";
 import IDIdentityWhite from "@/assets/icon_IDidentity_white.svg";
+import "./index.less";
 
 function Register() {
   return (
@@ -12,7 +13,7 @@ function Register() {
         <div className="login-form-title-container">
           <img className="login-form-title-icon" src={IDIdentityWhite} alt="ID Identity White" />
           <SplitText
-            text="注册账号"
+            text={APP_TITLE}
             delay={50}
             duration={1.25}
             ease="power3.out"

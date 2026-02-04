@@ -148,7 +148,8 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
 
   const handleCardClick = (url?: string) => {
     if (url) {
-      window.open(url, "_blank", "noopener,noreferrer");
+      const newUrl = `${url}&timestamp=${new Date().getTime().toString()}`;
+      window.open(newUrl, "_blank", "noopener,noreferrer");
     }
   };
 

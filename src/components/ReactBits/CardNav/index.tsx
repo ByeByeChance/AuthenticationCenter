@@ -6,6 +6,7 @@ import { APP_TITLE } from "@/config";
 import { logout } from "@/redux/modules/user";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { message } from "antd";
 
 type CardNavLink = {
   label: string;
@@ -24,7 +25,7 @@ export type CardNavItem = {
 export interface CardNavProps {
   logo: string;
   logoAlt?: string;
-  items: CardNavItem[];
+  items?: CardNavItem[];
   className?: string;
   ease?: string;
   baseColor?: string;
@@ -150,7 +151,12 @@ const CardNav: React.FC<CardNavProps> = ({
     return () => window.removeEventListener("resize", handleResize);
   }, [isExpanded, ease, items]);
 
+  const showMenu: boolean = false;
   const toggleMenu = () => {
+    if (!showMenu) {
+      message.warning("功能暂未开放");
+      return;
+    }
     const tl = tlRef.current;
     if (!tl) {
       console.error("Timeline not initialized");

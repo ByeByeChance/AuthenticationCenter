@@ -8,8 +8,8 @@ const Nav = () => {
       bgColor: "#0D0716",
       textColor: "#fff",
       links: [
-        { label: "我的平台", ariaLabel: "我的平台" },
-        { label: "平台管理", ariaLabel: "平台管理" }
+        { label: "我的平台", ariaLabel: "我的平台", path: "/" },
+        { label: "平台管理", ariaLabel: "平台管理", path: "/platformManagement" }
       ]
     },
     {
@@ -17,8 +17,8 @@ const Nav = () => {
       bgColor: "#170D27",
       textColor: "#fff",
       links: [
-        { label: "用户管理", ariaLabel: "用户管理" },
-        { label: "角色管理", ariaLabel: "角色管理" }
+        { label: "用户管理", ariaLabel: "用户管理", path: "/userManagement" },
+        { label: "角色管理", ariaLabel: "角色管理", path: "/roleManagement" }
       ]
     },
     {
@@ -26,8 +26,8 @@ const Nav = () => {
       bgColor: "#271E37",
       textColor: "#fff",
       links: [
-        { label: "审计日志", ariaLabel: "审计日志" },
-        { label: "审计配置", ariaLabel: "审计配置" }
+        { label: "审计日志", ariaLabel: "审计日志", path: "/auditLog" },
+        { label: "审计配置", ariaLabel: "审计配置", path: "/auditConfig" }
       ]
     }
   ];

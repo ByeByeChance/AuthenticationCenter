@@ -1,4 +1,4 @@
-import Nav from "@/components/Nav";
+import Nav from "@/layouts/Nav";
 import "./index.less";
 
 const HeaderLayout = () => {

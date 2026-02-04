@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { GoArrowUpRight } from "react-icons/go";
 import "./index.less";
@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 type CardNavLink = {
   label: string;
   href?: string;
+  path?: string;
   ariaLabel: string;
 };
 
@@ -114,7 +115,7 @@ const CardNav: React.FC<CardNavProps> = ({
       tl?.kill();
       tlRef.current = null;
     };
-  }, [ease, items]);
+  }, [ease, items, navigate]);
 
   useLayoutEffect(() => {
     const handleResize = () => {
@@ -139,26 +140,61 @@ const CardNav: React.FC<CardNavProps> = ({
       }
     };
 
+    // 组件重新渲染时，如果是展开状态，需要恢复动画状态
+    // 但要避免在用户点击展开时跳过动画
+    if (isExpanded && tlRef.current) {
+      tlRef.current.progress(1);
+    }
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [isExpanded]);
+  }, [isExpanded, ease, items]);
 
   const toggleMenu = () => {
     const tl = tlRef.current;
-    if (!tl) return;
+    if (!tl) {
+      console.error("Timeline not initialized");
+      return;
+    }
     if (!isExpanded) {
       setIsHamburgerOpen(true);
       setIsExpanded(true);
       tl.play(0);
     } else {
       setIsHamburgerOpen(false);
-      tl.eventCallback("onReverseComplete", () => setIsExpanded(false));
+      tl.eventCallback("onReverseComplete", () => {
+        setIsExpanded(false);
+      });
       tl.reverse();
     }
   };
 
   const setCardRef = (i: number) => (el: HTMLDivElement | null) => {
     if (el) cardsRef.current[i] = el;
+  };
+
+  // 点击外部关闭菜单
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const navContainer = document.querySelector(".card-nav-container");
+      if (navContainer && isExpanded && !navContainer.contains(event.target as Node)) {
+        toggleMenu();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isExpanded]);
+
+  const handleCardClick = (e: React.MouseEvent<HTMLAnchorElement>, url?: string, path?: string) => {
+    e.preventDefault();
+    if (path) {
+      navigate(path);
+    } else if (url) {
+      window.open(url, "_blank");
+    }
   };
 
   return (
@@ -203,7 +239,14 @@ const CardNav: React.FC<CardNavProps> = ({
               <div className="nav-card-label">{item.label}</div>
               <div className="nav-card-links">
                 {item.links?.map((lnk, i) => (
-                  <a key={`${lnk.label}-${i}`} className="nav-card-link" href={lnk.href} aria-label={lnk.ariaLabel}>
+                  <a
+                    key={`${lnk.label}-${i}`}
+                    className="nav-card-link"
+                    href={lnk.path || lnk.href || "#"}
+                    onClick={e => handleCardClick(e, lnk.href, lnk.path)}
+                    aria-label={lnk.ariaLabel}
+                    rel={lnk.path ? "" : "noopener noreferrer"}
+                  >
                     <GoArrowUpRight className="nav-card-link-icon" aria-hidden="true" />
                     {lnk.label}
                   </a>

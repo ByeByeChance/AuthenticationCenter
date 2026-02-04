@@ -68,6 +68,58 @@ export const staticRouter: RouteObjectType[] = [
           title: "设置",
           requiresAuth: true
         }
+      },
+      {
+        path: "/platformManagement",
+        element: (
+          <div className="page-container">
+            <h2>平台管理</h2>
+            <p>平台管理页面内容</p>
+          </div>
+        ),
+        meta: {
+          title: "平台管理",
+          requiresAuth: true
+        }
+      },
+      {
+        path: "/roleManagement",
+        element: (
+          <div className="page-container">
+            <h2>角色管理</h2>
+            <p>角色管理页面内容</p>
+          </div>
+        ),
+        meta: {
+          title: "角色管理",
+          requiresAuth: true
+        }
+      },
+      {
+        path: "/auditLog",
+        element: (
+          <div className="page-container">
+            <h2>审计日志</h2>
+            <p>审计日志页面内容</p>
+          </div>
+        ),
+        meta: {
+          title: "审计日志",
+          requiresAuth: true
+        }
+      },
+      {
+        path: "/auditConfig",
+        element: (
+          <div className="page-container">
+            <h2>审计配置</h2>
+            <p>审计配置页面内容</p>
+          </div>
+        ),
+        meta: {
+          title: "审计配置",
+          requiresAuth: true
+        }
       }
     ]
   },

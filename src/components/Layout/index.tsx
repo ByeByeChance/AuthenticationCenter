@@ -23,9 +23,9 @@ function LayoutComponent() {
         {/* 主体内容 */}
         <div className="app-body">
           {/* 主内容区 */}
-          <main className="app-content">
+          <div className="app-content">
             <Outlet />
-          </main>
+          </div>
         </div>
 
         {/* 底部 */}

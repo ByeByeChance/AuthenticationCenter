@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { LockOutlined, UserOutlined, LoginOutlined, RedoOutlined } from "@ant-design/icons";
 import { Button, Form, Input, message, notification } from "antd";
 import { useDispatch } from "react-redux";
@@ -16,6 +16,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
 
   // 监听storage事件，实现跨标签页状态同步
   useEffect(() => {
@@ -35,6 +36,7 @@ const LoginForm = () => {
   const onFinish = async (values: FieldType) => {
     try {
       // 调用登录API
+      setLoading(true);
       const res = await loginApi(values as ReqLogin);
 
       // 保存用户信息和token
@@ -73,6 +75,8 @@ const LoginForm = () => {
     } catch (error) {
       message.error("登录失败，请重试！");
       console.error("Login error:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -90,6 +94,7 @@ const LoginForm = () => {
       autoComplete="off"
       className="login-form-content"
       onFinish={onFinish}
+      disabled={loading}
     >
       <Form.Item<FieldType> name="username" rules={[{ required: true, message: "请输入用户名！" }]}>
         <Input prefix={<UserOutlined />} placeholder="用户名" />
@@ -103,7 +108,7 @@ const LoginForm = () => {
         <Button shape="round" icon={<RedoOutlined />} onClick={onReset}>
           重置
         </Button>
-        <Button type="primary" shape="round" icon={<LoginOutlined />} htmlType="submit">
+        <Button type="primary" shape="round" icon={<LoginOutlined />} htmlType="submit" loading={loading}>
           登录
         </Button>
       </Form.Item>

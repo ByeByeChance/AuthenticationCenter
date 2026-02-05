@@ -57,6 +57,10 @@ const LoginForm = () => {
         })
       );
 
+      // 保存用户名和加密后的密码到cookie
+      // setCookie("username", values.username);
+      // setCookie("password", encrypt(values.password));
+
       // 显示登录成功消息
       notification.success({
         title: getTimeState() + "，" + (values.username || ""),
